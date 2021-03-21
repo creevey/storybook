@@ -1,6 +1,7 @@
 name: Sync and Rebase
 
 on:
+  push:
   schedule:
     - cron: '0 0 * * *' # every day
   workflow_dispatch: # on button click
