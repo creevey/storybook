@@ -2,6 +2,8 @@ name: Sync and Rebase
 
 on:
   push:
+    branches:
+      - creevey
   schedule:
     - cron: '0 0 * * *' # every day
   workflow_dispatch: # on button click
@@ -14,6 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
+          ref: master
           fetch-depth: 0
       - name: Sync with upstream
         run: |
