@@ -1,4 +1,4 @@
-/// <reference types="node" />
+// / <reference types="node" />
 
 import type { StorybookConfig } from '@storybook/react/types';
 
@@ -8,7 +8,7 @@ module.exports = {
     '../../lib/ui/src/**/*.stories.@(js|tsx|mdx)',
     '../../lib/components/src/**/*.stories.@(js|tsx|mdx)',
     './stories/**/*stories.@(js|ts|tsx|mdx)',
-    './../../addons/docs/**/*.stories.tsx',
+    // TODO Support storiesOf variables './../../addons/docs/**/*.stories.tsx',
   ],
   reactOptions: {
     fastRefresh: true,
@@ -30,6 +30,7 @@ module.exports = {
     '@storybook/addon-jest',
     '@storybook/addon-graphql',
     '@storybook/addon-queryparams',
+    'creevey',
   ],
   core: {
     builder: 'webpack4',
