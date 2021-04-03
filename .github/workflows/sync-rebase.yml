@@ -31,6 +31,7 @@ jobs:
           git cherry-pick master..HEAD
           git push origin --force
       - name: Rebase master branch
+        run: |
           git checkout master
           git reset upstream/master --hard
           git push origin --force
