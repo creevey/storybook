@@ -20,16 +20,17 @@ jobs:
           git config --global user.name "Github Actions"
       - uses: actions/checkout@v2
         with:
-          ref: master
+          ref: creevey
           fetch-depth: 0
       - name: Sync with upstream
         run: |
           git remote add upstream https://github.com/storybookjs/storybook.git
           git fetch upstream
-          git reset upstream/master --hard
-          git push origin --force
       - name: Rebase creevey branch
         run: |
-          git checkout creevey
-          git rebase origin/master
+          git cherry-pick master..HEAD
+          git push origin --force
+      - name: Rebase master branch
+          git checkout master
+          git reset upstream/master --hard
           git push origin --force
