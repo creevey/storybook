@@ -26,8 +26,8 @@ jobs:
         run: |
           git remote add upstream https://github.com/storybookjs/storybook.git
           git fetch upstream
-          git merge upstream/master
-          git push
+          git reset upstream/master --hard
+          git push origin --force
       - name: Rebase creevey branch
         run: |
           git checkout creevey
