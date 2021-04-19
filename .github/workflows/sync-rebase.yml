@@ -28,6 +28,7 @@ jobs:
           git fetch upstream
       - name: Rebase creevey branch
         run: |
+          git reset upstream/master --hard
           git cherry-pick master..HEAD
           git push origin --force
       - name: Rebase master branch
