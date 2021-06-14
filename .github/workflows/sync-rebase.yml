@@ -1,0 +1,38 @@
+name: Sync and Rebase
+
+on:
+  push:
+    branches:
+      - creevey
+  schedule:
+    - cron: '0 0 * * *' # every day
+  workflow_dispatch: # on button click
+
+jobs:
+  sync:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup git username
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "Github Actions"
+      - uses: actions/checkout@v2
+        with:
+          ref: creevey
+          fetch-depth: 0
+      - name: Sync with upstream
+        run: |
+          git remote add upstream https://github.com/storybookjs/storybook.git
+          git fetch upstream
+      - name: Rebase creevey branch
+        run: |
+          git reset upstream/master --hard
+          git cherry-pick master..HEAD
+          git push origin --force
+      - name: Rebase master branch
+        run: |
+          git checkout master
+          git reset upstream/master --hard
+          git push origin --force
